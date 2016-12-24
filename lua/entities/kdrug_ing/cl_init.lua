@@ -30,11 +30,11 @@ function ENT:Draw()
 		end
 	end
 	
-	cam.Start3D2D(self:GetPos() + Vector(0, 0, max.z + 5 + math.sin(CurTime() * 3)), Angle(0, math.NormalizeAngle(CurTime() * 100), 90), 0.5)
+	cam.Start3D2D(self:GetPos() + Vector(0, 0, max.z + 5 + math.sin(CurTime() * 1.5)), Angle(0, math.NormalizeAngle(CurTime() * 60), 90), 0.5)
 		DrawTextCrap()
 	cam.End3D2D()
 
-	cam.Start3D2D(self:GetPos() + Vector(0, 0, max.z + 5 + math.sin(CurTime() * 3)), Angle(0, math.NormalizeAngle(CurTime() * 100) + 180, 90), 0.5)
+	cam.Start3D2D(self:GetPos() + Vector(0, 0, max.z + 5 + math.sin(CurTime() * 1.5)), Angle(0, math.NormalizeAngle(CurTime() * 60) + 180, 90), 0.5)
 		DrawTextCrap()
 	cam.End3D2D()
 end

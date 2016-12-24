@@ -1,7 +1,5 @@
 kdrugs = {}
-kdrugs.drugs = {}
-kdrugs.taken = {}
-kdrugs.ingredients = {}
+include("kdrugs_config.lua")
 include("sh_kdrugs.lua")
 function kdrugs.take()
 	local drug = net.ReadString()

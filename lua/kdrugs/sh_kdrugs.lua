@@ -1,3 +1,6 @@
+kdrugs.drugs = {}
+kdrugs.ingredients = {}
+if CLIENT then kdrugs.taken = {} end
 function kdrugs.load()
 	local files = file.Find("kdrugs/drugs/*.lua", "LUA")
 	for i,v in ipairs(files) do

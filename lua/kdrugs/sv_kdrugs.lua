@@ -2,9 +2,9 @@ util.AddNetworkString("kdrugs")
 util.AddNetworkString("kdrugs.lab")
 AddCSLuaFile("cl_kdrugs.lua")
 AddCSLuaFile("sh_kdrugs.lua")
+AddCSLuaFile("kdrugs_config.lua")
 kdrugs = {}
-kdrugs.drugs = {}
-kdrugs.ingredients = {}
+include("kdrugs_config.lua")
 include("sh_kdrugs.lua")
 function kdrugs.think()
 	local curtime = CurTime()

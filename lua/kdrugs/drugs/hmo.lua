@@ -30,7 +30,7 @@ function drug:DrawEffects(num, after, start)
 		viewmodelfov = 70 + (math.cos(curtime * 1.25) * num * 0.45),
 	})
 
-	if num >= 3 then
+	if num >= 8 then
 		surface.SetDrawColor(Color(255, 255, 255, math.abs(math.sin(curtime * 1.35) * math.Clamp(num * 2, 1, 90))))
 		surface.DrawRect(0, 0, ScrW(), ScrH())
 	end

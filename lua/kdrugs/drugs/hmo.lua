@@ -11,9 +11,9 @@ drug.ingredients = {
 drug.time = 45
 drug.atime = 7.5
 function drug:DrawEffects(num, after, start)
+	num = math.Clamp(num, 1, 2)
 	local me = LocalPlayer()
 	local curtime = CurTime()
-	num = num + 1
 	if after then
 		num = num * ((start + self.time + self.atime - curtime) / self.atime)
 	end
@@ -37,28 +37,28 @@ function drug:DrawEffects(num, after, start)
 end
 
 function drug:Start(ply, num)
-	ply:SetHealth(ply:Health() + 50)
-	ply:SetWalkSpeed(ply:GetWalkSpeed() + 350)
-	ply:SetRunSpeed(ply:GetRunSpeed() + 275)
-	ply:SetWalkSpeed(math.Clamp(ply:GetWalkSpeed(), 1, 800))
-	ply:SetRunSpeed(math.Clamp(ply:GetRunSpeed(), 1, 600))
+	if 2 >= num then
+		ply:SetHealth(ply:Health() + 50)
+		ply:SetWalkSpeed(ply:GetWalkSpeed() + 150)
+		ply:SetRunSpeed(ply:GetRunSpeed() + 125)
+	end
 end
 
 function drug:End(ply, num)
+	num = math.Clamp(num, 1, 2)
 	ply:SetHealth(ply:Health() - (num * 55))
 	if 0 >= ply:Health() then
 		ply:Kill()
 		return
 	end
 
-	ply:SetWalkSpeed(ply:GetWalkSpeed() - (num * 375))
-	ply:SetRunSpeed(ply:GetRunSpeed() - (num * 300))
-	ply:SetWalkSpeed(math.Clamp(ply:GetWalkSpeed(), 100, 400))
-	ply:SetRunSpeed(math.Clamp(ply:GetRunSpeed(), 50, 200))
+	ply:SetWalkSpeed(ply:GetWalkSpeed() - (num * 160))
+	ply:SetRunSpeed(ply:GetRunSpeed() - (num * 130))
 end
 
 function drug:EndAfterEffects(ply, num)
+	num = math.Clamp(num, 1, 2)
 	ply:SetHealth(ply:Health() + (num * 10))
-	ply:SetWalkSpeed(200)
-	ply:SetRunSpeed(400)
+	ply:SetWalkSpeed(ply:GetWalkSpeed() + (num * 170))
+	ply:SetRunSpeed(ply:GetRunSpeed() + (num * 135))
 end

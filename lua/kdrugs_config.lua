@@ -13,7 +13,7 @@ kdrugs.config = {
 		Maximum = 15, // max amount of each ingredient a player can buy
 		Price = 50, // price of each ingredient
 		Allowed = { // jobs that can buy the ingredients
-			TEAM_GANG,
+			TEAM_GANG
 		}
 	}
 }

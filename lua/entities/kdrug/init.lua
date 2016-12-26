@@ -23,7 +23,7 @@ function ENT:Use(_, ply)
 			extra = ply.kdrugs[self.drug.id].extra + 1
 		end
 
-		ply.kdrugs[self.drug.id] = {time = CurTime(), extra = extra, started = false}
+		ply.kdrugs[self.drug.id] = {time = CurTime(), extra = extra and extra or 1, started = false}
 		net.Start("kdrugs")
 		net.WriteString(self.drug.id)
 		net.WriteString(tostring(ply.kdrugs[self.drug.id].time))

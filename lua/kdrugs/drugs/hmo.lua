@@ -59,6 +59,6 @@ end
 function drug:EndAfterEffects(ply, num)
 	num = math.Clamp(num, 1, 2)
 	ply:SetHealth(ply:Health() + (num * 10))
-	ply:SetWalkSpeed(ply:GetWalkSpeed() + (num * 170))
-	ply:SetRunSpeed(ply:GetRunSpeed() + (num * 135))
+	ply:SetWalkSpeed(ply:GetWalkSpeed() + (num * 10))
+	ply:SetRunSpeed(ply:GetRunSpeed() + (num * 5))
 end

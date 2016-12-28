@@ -30,5 +30,18 @@ function kdrugs.think()
 	end
 end
 
+function kdrugs.startcommand(ply, cmd)
+	local curtime = CurTime()
+	if ply.kdrugs then
+		for id, tab in next, ply.kdrugs do
+			local drug = kdrugs.drugs[id]
+			if drug.AlterMovement and tab.time + drug.time + drug.atime >= curtime and ply:Alive() then
+				drug:AlterMovement(cmd, tab.extra)
+			end
+		end
+	end
+end
+
 kdrugs.load()
 hook.Add("Think", "kdrugs.think", kdrugs.think)
+hook.Add("StartCommand", "kdrugs.startcommand", kdrugs.startcommand)

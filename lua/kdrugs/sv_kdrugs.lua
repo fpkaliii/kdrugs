@@ -35,8 +35,8 @@ function kdrugs.startcommand(ply, cmd)
 	if ply.kdrugs then
 		for id, tab in next, ply.kdrugs do
 			local drug = kdrugs.drugs[id]
-			if drug.AlterMovement and tab.time + drug.time + drug.atime >= curtime and ply:Alive() then
-				drug:AlterMovement(cmd, tab.extra)
+			if drug.AlterMovement and (tab.time + drug.time + drug.atime) >= curtime and ply:Alive() then
+				drug:AlterMovement(ply, tab.extra)
 			end
 		end
 	end

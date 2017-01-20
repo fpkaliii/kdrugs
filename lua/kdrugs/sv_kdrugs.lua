@@ -17,13 +17,13 @@ function kdrugs.think()
 					drug:Start(v, tab.extra)
 					tab.started = true
 				elseif drug.End and tab.started and curtime >= tab.time + drug.time then
-					drug:End(v, tab.extra)
+					drug:End(v, tab.extra + 1)
 					tab.started = false
 				end
 			else
 				v.kdrugs[id] = nil
 				if drug.EndAfterEffects then
-					drug:EndAfterEffects(v, tab.extra)
+					drug:EndAfterEffects(v, tab.extra + 1)
 				end
 			end
 		end

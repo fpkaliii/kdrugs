@@ -29,11 +29,14 @@ end
 
 function ENT:Use(_, ply)
 	if !self.nextuse then
-		self.nextuse = CurTime() + 0.5
+		self.nextuse = CurTime() + 0.75
 	elseif self.nextuse > CurTime() then
 		return
 	end
 	
+	local best = 0
+	local toRemove = {}
+	local drugid
 	for id, drug in next, kdrugs.drugs do
 		local has = 0
 		local remove = {}
@@ -45,19 +48,27 @@ function ENT:Use(_, ply)
 		end
 
 		if has == table.Count(drug.ingredients) then
-			local meme = ents.Create("kdrug_" .. id)
-			if !meme:IsValid() then return end
-			for name, count in next, remove do
-				self.ingredients[name] = self.ingredients[name] - count
-				if 0 >= self.ingredients[name] then
-					self.ingredients[name] = nil
-				end
+			if has > best then
+				best = has
+				toRemove = remove
+				drugid = id
 			end
-
-			self:UpdateOnClient()
-			local min, max = self:GetCollisionBounds()
-			meme:SetPos(self:GetPos() + Vector(0, 0, max.z + 15))
-			meme:Spawn()
 		end
+	end
+
+	if drugid then
+		local meme = ents.Create("kdrug_" .. drugid)
+		if !meme:IsValid() then return end
+		for name, count in next, toRemove do
+			self.ingredients[name] = self.ingredients[name] - count
+			if 0 >= self.ingredients[name] then
+				self.ingredients[name] = nil
+			end
+		end
+
+		self:UpdateOnClient()
+		local min, max = self:GetCollisionBounds()
+		meme:SetPos(self:GetPos() + Vector(0, 0, max.z + 15))
+		meme:Spawn()
 	end
 end
